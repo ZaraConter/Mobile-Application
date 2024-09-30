@@ -1,0 +1,38 @@
+name: step_assist  # Changed from 'untitled3' for clarity
+description: A Flutter app for assisting people with disabilities.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+# Environment constraint to allow for Dart SDK 3.x
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  curved_navigation_bar: ^1.0.3  # Ensure this package is necessary for your app
+  email_validator: ^2.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Specify your asset folders
+  assets:
+    - lib/assets/background.png
+    - lib/assets/background2.png
+    - lib/assets/disabled-person.png
+
+  # Uncomment this section to add custom fonts if necessary
+  fonts:
+   - family: YourCustomFont
+     fonts:
+       - asset: lib/fonts/Poppins/Poppins-Light.ttf
+  
