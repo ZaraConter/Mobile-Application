@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'l10n/en.dart'; // Ensure this import matches your localization files
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -20,19 +21,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   String? _validateEmail(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your email address.';
+      return AppLocalizations.of(context).enterEmail; // Get localized text
     }
     if (!EmailValidator.validate(value)) {
-      return 'Please enter a valid email address.';
+      return AppLocalizations.of(context).invalidEmail; // Get localized text
     }
     return null;
   }
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      // Handle password reset logic here
+      // Simulate password reset logic
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Password reset link sent to ${_emailController.text}')),
+        SnackBar(
+          content: Text('Password reset link sent to ${_emailController.text}'),
+          duration: const Duration(seconds: 3), // Duration for the SnackBar
+        ),
       );
 
       // Navigate back to the LoginPage after submission
@@ -42,12 +46,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    const Color customColor = Color(0xFF008080);
+    final localizations = AppLocalizations.of(context); // Access localization
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF008080),
+        backgroundColor: customColor,
         automaticallyImplyLeading: false, // Removes the back arrow
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -55,10 +62,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Reset Password',
-                  style: TextStyle(
-                    fontFamily: 'YourCustomFont',
+                Text(
+                  localizations.resetPassword, // Use localized text
+                  style: const TextStyle(
+                    fontFamily: 'YourCustomFont', // Make sure this font is defined
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                   ),
@@ -75,7 +82,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                     prefixIcon: const Icon(
                       Icons.email,
-                      color: Color(0xFF008080),
+                      color: customColor,
                     ),
                   ),
                   validator: _validateEmail,
@@ -87,14 +94,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                    backgroundColor: const Color(0xFF008080),
+                    backgroundColor: customColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text(
-                    'Send Reset Link',
-                    style: TextStyle(
+                  child: Text(
+                    localizations.sendResetLink, // Use localized text
+                    style: const TextStyle(
                       fontFamily: 'YourCustomFont',
                       fontSize: 14,
                       color: Colors.white,
@@ -108,9 +115,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   onPressed: () {
                     Navigator.pop(context); // Go back to the Login Page
                   },
-                  child: const Text(
-                    'Back to Login',
-                    style: TextStyle(color: Color(0xFF008080)),
+                  child: Text(
+                    localizations.backToLogin, // Use localized text
+                    style: TextStyle(color: customColor),
                   ),
                 ),
               ],

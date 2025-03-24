@@ -50,7 +50,7 @@ class GetStartedPage extends StatelessWidget {
                 // Navigate directly to the LoginPage
                 Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
                 );
               },
 

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:step_assist/ProfilePage.dart';
 import 'SignUpPage.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -27,14 +30,14 @@ class _LoginPageState extends State<LoginPage> {
       return 'Please enter your email or username.';
     }
 
-    // Validate email format if it contains "@" symbol
+    // Validate email format if it contains "@"
     if (value.contains('@')) {
       // Basic check for valid email format
       if (!EmailValidator.validate(value)) {
         return 'Please enter a valid email address.';
       }
 
-      // Additional checks
+      // Additional checks for email format
       if (value.indexOf('@') == 0 || value.indexOf('@') == value.length - 1) {
         return 'Invalid email format.';
       }
@@ -68,10 +71,23 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
-  void _login() {
+  // Save user data to SharedPreferences
+  Future<void> _saveUserData() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', _usernameController.text);
+    await prefs.setString('email', _usernameController.text); // Assuming email is entered as username
+  }
+
+  void _login() async {
     if (_formKey.currentState!.validate()) {
-      // Handle login logic here
-      Navigator.pushNamed(context, '/home'); // Navigates to Home Page
+      // Save user data to SharedPreferences
+      await _saveUserData();
+
+      // Navigate to the ProfilePage after login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => ProfilePage()),
+      );
     }
   }
 
@@ -217,18 +233,17 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(height: 20),
 
                               TextButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SignUpPage()),
-    );
-  },
-  child: const Text(
-    "Don't have an account? Sign up",
-    style: TextStyle(color: Color(0xFF008080)),
-  ),
-),
-
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => const SignUpPage()),
+                                  );
+                                },
+                                child: const Text(
+                                  "Don't have an account? Sign up",
+                                  style: TextStyle(color: Color(0xFF008080)),
+                                ),
+                              ),
                             ],
                           ),
                         ),

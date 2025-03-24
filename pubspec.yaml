@@ -12,9 +12,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  emoji_picker_flutter: ^1.6.3
+  giphy_get: ^3.2.0
   cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3  # Ensure this package is necessary for your app
   email_validator: ^2.0.1
+  url_launcher: ^6.1.7
+  image_picker: ^0.8.5+3  # Add this line for image_picker dependency
+  provider: ^6.1.2
+  shared_preferences: ^2.0.15
+  
 
 dev_dependencies:
   flutter_test:

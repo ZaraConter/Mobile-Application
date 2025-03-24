@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'GetStartedPage.dart'; // Import the Get Started page
+import 'package:step_assist/GetStartedPage.dart';
+// Import the Get Started page
 import 'HomePage.dart';
+//flutter run -d XMJ4C19B11003993
 
 void main() {
   runApp(const StepAssistApp());
@@ -17,13 +19,13 @@ class StepAssistApp extends StatelessWidget {
         primarySwatch: Colors.blue, // App theme color
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GetStartedPage(), // Set the initial page to GetStartedPage
+      home: const HomePage(), // Set the initial page to GetStartedPage
       
       routes: {
         '/login': (context) => const LoginPage(), // Login page route
         '/signup': (context) => const SignUpPage(),  // Sign Up page route
         '/forgotPassword': (context) => const ForgotPasswordPage(),  // Forgot Password page route
-        '/home': (context) =>  HomePage(),  // Home page route
+        '/home': (context) =>  const HomePage(),  // Home page route
       },
     );
   }

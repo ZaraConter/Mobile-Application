@@ -3,7 +3,7 @@ import 'dart:async'; // Import for Timer
 import 'LoginPage.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: HomePage(),
   ));
 }
@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
       onTap: () {
         // Navigate to the LoginPage
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       },
       contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
@@ -365,7 +365,7 @@ Widget _buildLogoutItem(BuildContext context) {
         // Navigate to LoginPage
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
+          MaterialPageRoute(builder: (context) => const LoginPage()),
         );
       },
       contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),

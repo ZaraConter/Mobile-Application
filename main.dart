@@ -17,13 +17,13 @@ class StepAssistApp extends StatelessWidget {
         primarySwatch: Colors.blue, // App theme color
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GetStartedPage(), // Set the initial page to GetStartedPage
+      home: const GetStartedPage(), // Set the initial page to GetStartedPage
       
       routes: {
         '/login': (context) => const LoginPage(), // Login page route
         '/signup': (context) => const SignUpPage(),  // Sign Up page route
         '/forgotPassword': (context) => const ForgotPasswordPage(),  // Forgot Password page route
-        '/home': (context) =>  HomePage(),  // Home page route
+        '/home': (context) =>  const HomePage(),  // Home page route
       },
     );
   }
